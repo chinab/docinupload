@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<project name="package_down_up" basedir="../" default="package">
+	<property name="down.path" value="../com.gaoqs.auto.wenku.down/target" />
+	<property name="up.path" value="../com.gaoqs.auto.wenku.up/target" />
+	<property name="package.down.path" value="package/down" />
+	<property name="package.up.path" value="package/up" />
+
+	<target name="clean" description="Deletes compiled classes and WAR">
+		<delete dir="${package.down.path}" />
+		<delete dir="${package.up.path}" />
+	</target>
+
+	<target name="package" depends="clean" description="Create down/up package for app">
+		<mkdir dir="${package.down.path}"/>
+		<mkdir dir="${package.up.path}"/>
+		
+		<copy todir="${package.down.path}">
+			<fileset dir="${down.path}" />
+		</copy>
+		<copy todir="${package.up.path}">
+			<fileset dir="${up.path}">
+				<exclude name="libs/**" />
+			</fileset>
+		</copy>
+	</target>
+
+</project>
