@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exe4j version="4.3.1" transformSequenceNumber="1">
+  <directoryPresets config="D:/javatools/workspace/com.gaoqs.auto.docin.click/package" />
+  <application name="DocinClick" distributionSourceDir="D:/docin_soft/DocinClick">
+    <languages>
+      <principalLanguage id="en" customLocalizationFile="" />
+    </languages>
+  </application>
+  <executable name="豆丁文档点击" type="2" iconSet="true" iconFile="D:/javatools/workspace/com.gaoqs.auto.docin.click/resources/Auto-Type.ico" executableDir="." redirectStderr="true" stderrFile="run.log" stderrMode="overwrite" redirectStdout="false" stdoutFile="output.log" stdoutMode="overwrite" failOnStderrOutput="true" executableMode="1" changeWorkingDirectory="true" workingDirectory="." singleInstance="false" serviceStartType="2" serviceDependencies="" serviceDescription="" jreLocation="" executionLevel="asInvoker" checkConsoleParameter="false" amd64="false">
+    <messageSet />
+    <versionInfo include="true" fileVersion="1.0.1" fileDescription="点击用户的文档链接" legalCopyright="gaoqs.com" internalName="豆丁点击工具" productName="" companyName="gaoqs.com" productVersion="1.0" />
+  </executable>
+  <splashScreen show="false" autoOff="true" alwaysOnTop="true" width="0" height="0" bitmapFile="" java6SplashScreen="false">
+    <text>
+      <statusLine x="20" y="20" text="" font="Arial" fontSize="8" fontColor="0,0,0" fontWeight="500" />
+      <versionLine x="20" y="40" text="version %VERSION%" font="Arial" fontSize="8" fontColor="0,0,0" fontWeight="500" />
+    </text>
+  </splashScreen>
+  <java mainClass="com.gaoqs.auto.docin.click.AutoBrowser" vmParameters="" arguments="" allowVMPassthroughParameters="true" preferredVM="" bundleRuntime="true" minVersion="1.6" maxVersion="" allowBetaVM="false" jdkOnly="false">
+    <searchSequence>
+      <directory location="jre" />
+      <directory location="jre/jre" />
+      <registry />
+      <envVar name="JAVA_HOME" />
+      <envVar name="JDK_HOME" />
+      <envVar name="EXE4J_JAVA_HOME" />
+    </searchSequence>
+    <classPath>
+      <archive location="../../javatools/workspace/com.gaoqs.auto.docin.click/libs/apache-mime4j-0.6.jar" failOnError="false" />
+      <archive location="../../javatools/workspace/com.gaoqs.auto.docin.click/libs/com.gaoqs.commons-0.0.1-SNAPSHOT.jar" failOnError="false" />
+      <archive location="../../javatools/workspace/com.gaoqs.auto.docin.click/libs/commons-io-1.3.2.jar" failOnError="false" />
+      <archive location="../../javatools/workspace/com.gaoqs.auto.docin.click/libs/commons-logging-1.1.1.jar" failOnError="false" />
+      <archive location="../../javatools/workspace/com.gaoqs.auto.docin.click/libs/httpclient-4.1-alpha1.jar" failOnError="false" />
+      <archive location="../../javatools/workspace/com.gaoqs.auto.docin.click/libs/httpcore-4.1-alpha1.jar" failOnError="false" />
+      <archive location="../../javatools/workspace/com.gaoqs.auto.docin.click/libs/httpmime-4.1-alpha1.jar" failOnError="false" />
+      <archive location="../../javatools/workspace/com.gaoqs.auto.docin.click/libs/log4j-1.2.12.jar" failOnError="false" />
+      <archive location="../../javatools/workspace/com.gaoqs.auto.docin.click/libs/org.eclipse.swt.win32.win32.x86_3.5.0.v3550b.jar" failOnError="false" />
+      <archive location="../../javatools/workspace/com.gaoqs.auto.docin.click/libs/org.eclipse.swt_3.5.0.v3550b.jar" failOnError="false" />
+      <archive location="../../javatools/workspace/com.gaoqs.auto.docin.click/package/com.gaoqs.auto.docin.click-0.1.jar" failOnError="false" />
+    </classPath>
+    <nativeLibraryDirectories />
+  </java>
+  <includedFiles />
+  <unextractableFiles />
+</exe4j>
+

@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<project name="com.gaoqs.auto.docin.click" basedir="." default="package">
+	<property name="project.name" value="com.gaoqs.auto.docin.click" />
+	<property name="project.version" value="0.1" />
+	<property name="jdk.version" value="1.6" />
+	<property name="src.dir" value="src" />
+	<property name="resources.dir" value="resources" />
+	<property name="test.dir" value="test" />
+	<property name="build.dir" value="build" />
+	<property name="dist.dir" value="dist" />
+	<property name="lib.dir" value="libs" />
+	<property environment="env" />
+	<property name="fail.flag" value="FAILURE>>>>>" />
+	<property name="package.dir" value="package" />
+	<property name="packager" value="gaoqs.com" />
+
+	<path id="classpath">
+		<fileset dir="${lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+		<pathelement path="${classes.dir}" />
+	</path>
+
+	<!-- compile & copy files -->
+	<target name="compile" depends="clean" description="Compile all Java files">
+		<mkdir dir="${build.dir}" />
+		<javac destdir="${build.dir}" target="${jdk.version}" srcdir="${src.dir}" debug="true" deprecation="false" optimize="false" failonerror="true" encoding="utf-8">
+			<!--
+			<compilerarg value="-Xlint:unchecked"/>
+			-->
+			<sourcepath path="${src.dir}" />
+			<classpath refid="classpath" />
+		</javac>
+	</target>
+
+	<!-- clean build folder & dist folder -->
+	<target name="clean" description="Deletes compiled classes and WAR">
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+		<delete dir="${package.dir}" />
+	</target>
+
+	<!-- jar package -->
+	<target name="jar-lib" depends="clean,compile" description="Create JAR for project">
+		<mkdir dir="${dist.dir}" />
+		<pathconvert property="libs.project" pathsep=" ">
+			<mapper>
+				<chainedmapper>
+					<!-- remove absolute path -->
+					<flattenmapper />
+					<!-- add lib/ prefix -->
+					<globmapper from="*" to="${lib.dir}/*" />
+				</chainedmapper>
+			</mapper>
+			<path>
+				<!-- lib.dir contains all jar files, in several subdirectories -->
+				<fileset dir="${lib.dir}">
+					<include name="**/*.jar" />
+					<exclude name="junit*.jar"/>
+				</fileset>
+			</path>
+		</pathconvert>
+		<jar jarfile="${dist.dir}/${project.name}-${project.version}.jar">
+			<fileset dir="${build.dir}">
+				<include name="**/*.*" />
+				<exclude name="*.xml" />
+				<exclude name="*.ini" />
+				<exclude name="*.properties" />
+			</fileset>
+			<fileset dir="${resources.dir}">
+				<include name="log4j.properties" />
+			</fileset>
+			<manifest>
+				<attribute name="Manifest-Version" value="1.0"/>
+				<attribute name="Built-By" value="${packager}"/>
+				<attribute name="Main-Class" value="com.gaoqs.auto.docin.click.AutoBrowser"/>
+				<attribute name="Class-Path" value="${libs.project}" />
+			</manifest>
+		</jar>
+	</target>
+
+	<!-- jar distribute -->
+	<target name="package" depends="jar-lib" description="Distribute jar to other project 's libs">
+		<mkdir dir="${package.dir}" />
+		<copy todir="${package.dir}/libs">
+			<fileset dir="${lib.dir}">
+				<include name="**/*.jar" />
+			</fileset>
+		</copy>
+		<copy todir="${package.dir}">
+			<fileset dir="${dist.dir}">
+				<include name="**/*.jar" />
+			</fileset>
+			<fileset dir="${resources.dir}">
+				<include name="**/*.*" />
+				<exclude name="log4j.properties" />
+			</fileset>
+		</copy>
+		<!-- delete afert package -->
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+	</target>
+
+</project>
