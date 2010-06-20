@@ -1,6 +1,8 @@
 #labels 豆丁上传使用演示视频教程,txt文档说明
 豆丁上传使用演示视频教程.txt
 
+视频地址： http://docinupload.googlecode.com/files/docin_upload_video.avi
+
 注意：上传间隔目前需要设置成30秒。
 
 
