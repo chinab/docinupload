@@ -1,5 +1,8 @@
 #labels 首先，我们随便找一个豆丁号作为演示,txt文档说明
-豆丁点击使用演示视频教程.txt
+豆丁点击使用演示视频教程.txt 
+
+视频地址：
+http://docinupload.googlecode.com/files/docin_click_video.avi
 
 首先，我们随便找一个豆丁号作为演示
 我在首页的，精选文档里，找到一位
