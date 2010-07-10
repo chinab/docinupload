@@ -116,45 +116,46 @@ public class BrowserUtil {
 	 * @return
 	 */
 	public static String getSecurityMac(){
-		String line;
-		String physicalAddress = "read MAC error!";
-		try {
-			Process p = Runtime.getRuntime().exec("cmd.exe /c ipconfig /all");
-			// p.waitFor();
-			BufferedReader bd = new BufferedReader(new InputStreamReader(p
-					.getInputStream()));
-			while ((line = bd.readLine()) != null) {
-//				if (line.indexOf("Physical Address. . . . . . . . . :") != -1) {
-//					if (line.indexOf(":") != -1) {
-//						physicalAddress = line.substring(line.indexOf(":") + 2);
-//						break; // 找到MAC,退出循环
+//		String line;
+//		String physicalAddress = "read MAC error!";
+//		try {
+//			Process p = Runtime.getRuntime().exec("cmd.exe /c ipconfig /all");
+//			// p.waitFor();
+//			BufferedReader bd = new BufferedReader(new InputStreamReader(p
+//					.getInputStream()));
+//			while ((line = bd.readLine()) != null) {
+////				if (line.indexOf("Physical Address. . . . . . . . . :") != -1) {
+////					if (line.indexOf(":") != -1) {
+////						physicalAddress = line.substring(line.indexOf(":") + 2);
+////						break; // 找到MAC,退出循环
+////					}
+////				}
+//				//用正则取mac地址
+//				//中间为:-或空格的mac地址
+//				Matcher mc = Pattern.compile("([0-9a-fA-F]{2})(([/\\s:-][0-9a-fA-F]{2}){5})").matcher(line);
+//				if(mc.find()){
+//					physicalAddress= mc.group();
+//				}else{
+//					//中间无任何符号的mac
+//					mc = Pattern.compile("([0-9a-fA-F]{2})(([0-9a-fA-F]{2}){5})").matcher(line);
+//					if(mc.find()){
+//						physicalAddress= mc.group();
 //					}
 //				}
-				//用正则取mac地址
-				//中间为:-或空格的mac地址
-				Matcher mc = Pattern.compile("([0-9a-fA-F]{2})(([/\\s:-][0-9a-fA-F]{2}){5})").matcher(line);
-				if(mc.find()){
-					physicalAddress= mc.group();
-				}else{
-					//中间无任何符号的mac
-					mc = Pattern.compile("([0-9a-fA-F]{2})(([0-9a-fA-F]{2}){5})").matcher(line);
-					if(mc.find()){
-						physicalAddress= mc.group();
-					}
-				}
-				
-			}
-			p.waitFor();
-		} catch (Exception e) {
-			AutoBrowser.showMessageBox("无法计算注册码！请确网络连接是否正常！");
-			return null;
-		}
-		if(physicalAddress.equals("read MAC error!")){
-			AutoBrowser.showMessageBox("无法计算注册码！请确认网络连接是否正常！");
-			return null;
-		}
-		return Md5Util.md5(physicalAddress, keys[0]);
-		//return physicalAddress;
+//				
+//			}
+//			p.waitFor();
+//		} catch (Exception e) {
+//			AutoBrowser.showMessageBox("无法计算注册码！请确网络连接是否正常！");
+//			return null;
+//		}
+//		if(physicalAddress.equals("read MAC error!")){
+//			AutoBrowser.showMessageBox("无法计算注册码！请确认网络连接是否正常！");
+//			return null;
+//		}
+//		return Md5Util.md5(physicalAddress, keys[0]);
+//		//return physicalAddress;
+		return "完全免费，请帮忙点击广告，谢谢";
 	}
 	
 	
@@ -166,12 +167,14 @@ public class BrowserUtil {
 	 * @return
 	 */
 	public static String encodingSecurityMac(String input){
-		String temp=Md5Util.md5(input, keys[1]);
-		StringBuffer sb=new StringBuffer();
-		for(int i=0;i<temp.length();i+=2){
-			sb.append(temp.charAt(i));
-		}
-		return sb.toString(); 
+//		String temp=Md5Util.md5(input, keys[1]);
+//		StringBuffer sb=new StringBuffer();
+//		for(int i=0;i<temp.length();i+=2){
+//			sb.append(temp.charAt(i));
+//		}
+//		return sb.toString(); 
+		//已经不再处理验证
+		return input;
 	}
 	
 	/**
