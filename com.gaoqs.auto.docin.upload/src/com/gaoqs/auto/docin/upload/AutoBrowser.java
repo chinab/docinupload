@@ -39,6 +39,7 @@ public class AutoBrowser {
 	private static String realCompleteUrl;
 	public static String title;
 	private static String preTitle;
+	public static String html;
 	
 	public static void main(String args[]) {
 		display = new Display();
@@ -111,7 +112,7 @@ public class AutoBrowser {
 //			boolean focus=AutoBrowser.browser.forceFocus();
 //			System.out.println(focus);
 			//System.out.println("ggggg");
-			
+			html=browser.getText();
 			if(errorMsg!=null){
 				showMessageBox(errorMsg);
 				errorMsg=null;

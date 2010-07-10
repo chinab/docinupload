@@ -23,7 +23,7 @@ import com.gaoqs.commons.string.EncodingUtil;
 import com.gaoqs.commons.string.StringProcess;
 
 
-public class DocinUploadMain implements Runnable{
+public class CopyOfDocinUploadMain implements Runnable{
 	
 	/**
 	 * 请求文档序列soap信息
@@ -34,7 +34,7 @@ public class DocinUploadMain implements Runnable{
 	 */
 	private static String ADDPRODUCT_SOAP="<?xml version=\"1.0\" encoding=\"utf-8\"?><SOAP-ENV:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\"><SOAP-ENV:Body><addProduct xmlns=\"http://web.service.projectx.wonibo.com\"><in0>${type}</in0></addProduct></SOAP-ENV:Body></SOAP-ENV:Envelope>";
 	
-	private Log log=LogFactory.getLog(DocinUploadMain.class);
+	private Log log=LogFactory.getLog(CopyOfDocinUploadMain.class);
 	
 	private HttpClientProcess process;	
 	
@@ -88,38 +88,27 @@ public class DocinUploadMain implements Runnable{
 			 process = new HttpClientProcess();
 			 process.getHeaderMap().put("Cookie", AutoBrowser.cookies);
 			 process.getHeaderMap().put("User-Agent", "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0;  Embedded Web Browser from: http://bsalsa.com/; .NET CLR 2.0.50727; .NET CLR 3.0.04506.648; .NET CLR 3.5.21022)");
-//			 //开始上传文件
-//			 String uploadFolder=AutoBrowser.property.getProperty("upload_path");
-//			 if(uploadFolder==null){
-//				 AutoBrowser.infoMsg="上传目录未设置，请配置upload_path=属性";
-//				 return;
-//			 }
-//			 uploadFolder.replace("\\", "/");
-//			 if(!new File(uploadFolder).exists()){
-//				 AutoBrowser.infoMsg="上传目录不存在\n"+AutoBrowser.property.getProperty("upload_path");
-//				 return;
-//			 }
-//			 try{
-//				 uploadFile(new File(uploadFolder));
-//			 }catch(Exception e){
-//				 log.error("thread uploadFile error:"+BusinessExceptions.getDetailTrace(e));
-//			 }
-//			 if(AutoBrowser.title!=null && "上传文件出错，浏览器不可用！".equals(AutoBrowser.title)){
-//				 
-//			 }else
-//				 AutoBrowser.title="豆丁上传　　文件上传处理完成！";
-//			 return;
-			 String url="http://www.docin.com/gaobaby";
-			 processDetails(url, null, 10000, 0);
-			 String html=AutoBrowser.html;
-			 //System.out.println(html);
-			 String path=StringProcess.processRegxSingle(html, "receiverId=[0-9]*");
-			 System.out.println("http://www.docin.com/app/my/msg/reMsg?"+path);
-			sb = new StringBuffer();
-			sb.append("document.all.msgTitle.value='豆丁免费批量上传工具，豆丁免费批量点击工具';");
-			sb.append("document.getElementById('msgContent').value='豆丁工具下载：http://code.google.com/p/docinupload/downloads/list 批量上传使用说明：http://gaoqs.com/docs/docin_help.html 批量点击使用说明：http://gaoqs.com/docs/docin_click_help.html ';");
-			 sb.append("document.getElementById('reMsgForm').submit();");
-			 processDetails("http://www.docin.com/app/my/msg/reMsg?"+path, sb.toString(), 10000, 15000);
+			 //开始上传文件
+			 String uploadFolder=AutoBrowser.property.getProperty("upload_path");
+			 if(uploadFolder==null){
+				 AutoBrowser.infoMsg="上传目录未设置，请配置upload_path=属性";
+				 return;
+			 }
+			 uploadFolder.replace("\\", "/");
+			 if(!new File(uploadFolder).exists()){
+				 AutoBrowser.infoMsg="上传目录不存在\n"+AutoBrowser.property.getProperty("upload_path");
+				 return;
+			 }
+			 try{
+				 uploadFile(new File(uploadFolder));
+			 }catch(Exception e){
+				 log.error("thread uploadFile error:"+BusinessExceptions.getDetailTrace(e));
+			 }
+			 if(AutoBrowser.title!=null && "上传文件出错，浏览器不可用！".equals(AutoBrowser.title)){
+				 
+			 }else
+				 AutoBrowser.title="豆丁上传　　文件上传处理完成！";
+			 return;
 		}
 		
 	}
